@@ -1,5 +1,7 @@
+{{- if eq .chezmoi.os "darwin" }}
 # CodeWhisperer pre block. Keep at the top of this file.
 [[ -f "${HOME}/Library/Application Support/codewhisperer/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/codewhisperer/shell/zshrc.pre.zsh"
+{{- end }}
 
 # ============================================
 
@@ -14,7 +16,6 @@ function zvm_after_init() {
   [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 }
 
-
 function gitcfg() {
   case $1 in
   (wke) git config user.name youmin1017
@@ -26,9 +27,9 @@ function gitcfg() {
   esac
 }
 
-[ -f /Users/youmin/.antidote/antidote.zsh ] && source '/Users/youmin/.antidote/antidote.zsh'
-
+# Antidote
 # initialize plugins statically with ${ZDOTDIR:-~}/.zsh_plugins.txt
+[ -f /Users/youmin/.antidote/antidote.zsh ] && source '/Users/youmin/.antidote/antidote.zsh'
 antidote load
 
 # pnpm
@@ -46,6 +47,7 @@ alias -- rm='trash -F'
 alias -- lg='lazygit'
 alias -- kc='kubectl'
 alias -- uc='utmctl'
+alias -- cz='chezmoi'
 
 PATH="$PATH:"'/Users/youmin/.bun/bin'
 PATH="$PATH:"'/Users/youmin/.cargo/bin'
@@ -59,7 +61,6 @@ setopt inc_append_history
 autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
-# [ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
 eval "$(zoxide init --cmd z zsh)"
 eval "$(fzf --zsh)"
 
@@ -72,8 +73,6 @@ eval "$(starship init zsh)"
 
 # source <(kubectl completion zsh)
 # source <(glab completion -s zsh); compdef _glab glab
-
-# [[ -f "$HOME/fig-export/dotfiles/dotfile.zsh" ]] && builtin source "$HOME/fig-export/dotfiles/dotfile.zsh"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -90,5 +89,7 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+{{- if eq .chezmoi.os "darwin" }}
 # CodeWhisperer post block. Keep at the bottom of this file.
 [[ -f "${HOME}/Library/Application Support/codewhisperer/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/codewhisperer/shell/zshrc.post.zsh"
+{{- end }}
