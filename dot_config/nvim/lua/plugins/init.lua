@@ -32,6 +32,16 @@ return {
       require("nvim-surround").setup {}
     end,
   },
+
+  {
+    "lervag/vimtex",
+    event = "VeryLazy",
+    init = require "configs.vimtex",
+    dependencies = {
+      "micangl/cmp-vimtex",
+    },
+  },
+
   -- overrde plugin configs
   -- These are some examples, uncomment them if you want to see them work!
   -- {

@@ -30,6 +30,7 @@ local plugins = {
       local M = require "nvchad.configs.cmp"
       M = merge_tb("force", M, overrides.cmp)
       table.insert(M.sources, { name = "crates" })
+      table.insert(M.sources, { name = "vimtex" })
       return M
     end,
   },
