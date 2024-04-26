@@ -5,8 +5,8 @@ local utils = require("utils")
 
 vim.g.mapleader = " "
 
-local mappings = require("mappings")
-utils.load_mappings(mappings)
+require("mappings")
+-- utils.load_mappings(mappings)
 
 
 ----- VIM options -----
