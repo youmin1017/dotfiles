@@ -5,8 +5,8 @@
 local M = {}
 
 M.ui = {
-  theme_toggle = { "tokyonight", "one_light" },
-  theme = "tokyonight",
+  theme_toggle = { "yoru", "one_light" },
+  theme = "yoru",
   -- hl_add = highlights.add,
   transparency = false,
   nvdash = {
