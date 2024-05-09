@@ -1,8 +1,3 @@
-# CodeWhisperer pre block. Keep at the top of this file.
-[[ -f "${HOME}/Library/Application Support/codewhisperer/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/codewhisperer/shell/zshrc.pre.zsh"
-
-# ============================================
-
 # zsh-vi-mode configs
 function zvm_config() {
   ZVM_LINE_INIT_MODE=$ZVM_MODE_INSERT
@@ -11,7 +6,10 @@ function zvm_config() {
 }
 
 function zvm_after_init() {
-  [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+  if [ ! -f ~/.fzf.zsh ]; then 
+    fzf --zsh > ~/.fzf.zsh
+  fi
+  source ~/.fzf.zsh
 }
 
 function gitcfg() {
@@ -38,7 +36,6 @@ case ":$PATH:" in
 esac
 # pnpm end
 
-
 alias -- ii='open -a Finder.app'
 alias -- ls='ls --color=auto'
 alias -- vim='nvim'
@@ -50,15 +47,17 @@ alias -- cz='chezmoi'
 
 PATH="$PATH:"'/Users/youmin/.bun/bin'
 PATH="$PATH:"'/Users/youmin/.cargo/bin'
-PATH="/opt/homebrew/opt/bison/bin:$PATH"
-PATH="/opt/homebrew/opt/m4/bin:$PATH"
 
 export EDITOR='nvim'
 
 setopt autocd
-setopt inc_append_history
 autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt inc_append_history
 
 eval "$(zoxide init --cmd z zsh)"
 eval "$(fzf --zsh)"
@@ -72,21 +71,3 @@ eval "$(starship init zsh)"
 
 # source <(kubectl completion zsh)
 # source <(glab completion -s zsh); compdef _glab glab
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/opt/homebrew/Caskroom/miniforge/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/opt/homebrew/Caskroom/miniforge/base/etc/profile.d/conda.sh" ]; then
-        . "/opt/homebrew/Caskroom/miniforge/base/etc/profile.d/conda.sh"
-    else
-        export PATH="/opt/homebrew/Caskroom/miniforge/base/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
-# CodeWhisperer post block. Keep at the bottom of this file.
-[[ -f "${HOME}/Library/Application Support/codewhisperer/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/codewhisperer/shell/zshrc.post.zsh"
