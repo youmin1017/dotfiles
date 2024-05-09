@@ -13,6 +13,7 @@ local config = {
   tab_bar_at_bottom = true,
   enable_scroll_bar = false,
   window_background_opacity = 0.90,
+  macos_window_background_blur = 20,
   window_padding = {
     left = 0,
     right = 0,
