@@ -43,7 +43,9 @@ return {
   },
 
   -- import spec
-  { import = "configs.mason-lspconfig"}
+  { import = "configs.mason-lspconfig" },
+  { import = "configs.rust" },
+  { import = "configs.copilot" },
 
   -- overrde plugin configs
   -- These are some examples, uncomment them if you want to see them work!

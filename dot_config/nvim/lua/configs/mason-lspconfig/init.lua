@@ -1,7 +1,16 @@
 local setup = function(_, opts)
-  local on_attach = require("nvchad.configs.lspconfig").on_attach
-  local capabilities = require("nvchad.configs.lspconfig").capabilities
+  local on_attach = function(client, bufnr)
+    require("nvchad.configs.lspconfig").on_attach(client, bufnr)
 
+    require("lsp_signature").on_attach({
+      bind = true, -- This is mandatory, otherwise border config won't get registered.
+      handler_opts = {
+        border = "rounded",
+      },
+    }, bufnr)
+  end
+
+  local capabilities = require("nvchad.configs.lspconfig").capabilities
   local lspconfig = require "lspconfig"
 
   -- List of servers to install
@@ -9,24 +18,24 @@ local setup = function(_, opts)
 
   require("mason").setup(opts)
 
-  require("mason-lspconfig").setup({
+  require("mason-lspconfig").setup {
     ensure_installed = servers,
-  })
+  }
 
   -- This will setup lsp for servers you listed above
   -- And servers you install through mason UI
   -- So defining servers in the list above is optional
-  require("mason-lspconfig").setup_handlers({
+  require("mason-lspconfig").setup_handlers {
     -- Default setup for all servers, unless a custom one is defined below
     function(server_name)
-      lspconfig[server_name].setup({
+      lspconfig[server_name].setup {
         on_attach = function(client, bufnr)
           on_attach(client, bufnr)
           -- Add your other things here
           -- Example being format on save or something
         end,
         capabilities = capabilities,
-      })
+      }
     end,
     -- custom setup for a server goes after the function above
     -- Example, override rust_analyzer
@@ -34,14 +43,14 @@ local setup = function(_, opts)
     --   require("rust-tools").setup {}
     -- end,
     -- Another example with clangd
-    -- Users usually run into different offset_encodings issue, 
+    -- Users usually run into different offset_encodings issue,
     -- so this is how to bypass it (kindof)
     ["clangd"] = function()
-      lspconfig.clangd.setup({
+      lspconfig.clangd.setup {
         cmd = {
           "clangd",
           "--offset-encoding=utf-16", -- To match null-ls
-          --  With this, you can configure server with 
+          --  With this, you can configure server with
           --    - .clangd files
           --    - global clangd/config.yaml files
           --  Read the `--enable-config` option in `clangd --help` for more information
@@ -51,13 +60,46 @@ local setup = function(_, opts)
           on_attach(client, bufnr)
         end,
         capabilities = capabilities,
-      })
+      }
+    end,
+
+    ["rust_analyzer"] = function()
+      ---@type RustaceanOpts
+      vim.g.rustaceanvim = {
+        -- tools = {
+        --   executor = "toggleterm",
+        -- },
+        server = {
+          on_attach = function(client, bufnr)
+            on_attach(client, bufnr)
+            -- lsp.on_dap_attach(bufnr)
+          end,
+          capabilities = capabilities,
+          default_settings = {
+            ["rust-analyzer"] = {
+              cargo = {
+                allFeatures = true,
+                loadOutDirsFromCheck = true,
+                runBuildScripts = true,
+              },
+              procMacro = {
+                enable = true,
+                ignored = {
+                  ["async-trait"] = { "async_trait" },
+                  ["napi-derive"] = { "napi" },
+                  ["async-recursion"] = { "async_recursion" },
+                },
+              },
+            },
+          },
+        },
+      }
     end,
 
     -- Example: disable auto configuring an LSP
     -- Here, we disable lua_ls so we can use NvChad's default config
-    ["lua_ls"] = function() end,
-  })
+    -- ["lua_ls"] = function() end,
+  }
 end
 
 ---@type NvPluginSpec
@@ -74,8 +116,9 @@ local spec = {
       end,
     },
     "williamboman/mason-lspconfig",
+    "ray-x/lsp_signature.nvim",
     -- TODO: Add mason-null-ls? mason-dap?
-  }
+  },
 }
 
 return spec
