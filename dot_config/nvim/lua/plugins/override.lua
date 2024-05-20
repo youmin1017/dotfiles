@@ -4,9 +4,6 @@ local plugins = {
   {
     "nvim-treesitter/nvim-treesitter",
     opts = {
-      autotag = {
-        enable = true,
-      },
       ensure_installed = {
         "vim",
         "lua",

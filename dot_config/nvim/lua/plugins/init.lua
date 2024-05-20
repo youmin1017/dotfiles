@@ -21,7 +21,11 @@ return {
     dependencies = "nvim-treesitter/nvim-treesitter",
     event = "VeryLazy",
     config = function()
-      require("nvim-ts-autotag").setup()
+      require("nvim-ts-autotag").setup({
+        opts = {
+          enable_close_on_slash = false, -- Auto close on trailing </
+        }
+      })
     end,
   },
 
@@ -41,6 +45,8 @@ return {
       "micangl/cmp-vimtex",
     },
   },
+
+  "lambdalisue/vim-suda",
 
   -- import spec
   { import = "configs.mason-lspconfig" },
