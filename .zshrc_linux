@@ -29,15 +29,26 @@ function gitcfg() {
 antidote load
 
 # pnpm
-export PNPM_HOME="/Users/youmin/Library/pnpm"
+export PNPM_HOME="$HOME/Library/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
 
+# Alias
+
+# ls
+if [ -x "$(command -v eza)" ]; then
+  alias --  l='eza -lh  --icons=auto' # long list
+  alias -- ls='eza -1   --icons=auto' # short list
+  alias -- ll='eza -lha --icons=auto --sort=name --group-directories-first' # long list all
+  alias -- ld='eza -lhD --icons=auto' # long list dirs
+else
+  alias -- ls='ls --color=auto'
+fi
+
 alias -- ii='open -a Finder.app'
-alias -- ls='ls --color=auto'
 alias -- vim='nvim'
 alias -- rm='trash -F'
 alias -- lg='lazygit'
@@ -45,8 +56,8 @@ alias -- kc='kubectl'
 alias -- uc='utmctl'
 alias -- cz='chezmoi'
 
-PATH="$PATH:"'/Users/youmin/.bun/bin'
-PATH="$PATH:"'/Users/youmin/.cargo/bin'
+PATH="$PATH:$HOME/.bun/bin"
+PATH="$PATH:$HOME/.cargo/bin"
 
 export EDITOR='nvim'
 
