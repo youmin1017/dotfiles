@@ -80,5 +80,6 @@ eval "$(pyenv init -)"
 eval "$(fnm env --use-on-cd)"
 eval "$(starship init zsh)"
 
+source <(sqlx completions zsh)
 # source <(kubectl completion zsh)
 # source <(glab completion -s zsh); compdef _glab glab

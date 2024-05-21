@@ -46,7 +46,10 @@ return {
     },
   },
 
-  "lambdalisue/vim-suda",
+  {
+    "lambdalisue/vim-suda",
+    cmd = "SudaWrite"
+  },
 
   -- import spec
   { import = "configs.mason-lspconfig" },
