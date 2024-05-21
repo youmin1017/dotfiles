@@ -18,6 +18,6 @@ end, desc "Rust move item up [k]")
 vim.keymap.set("n", "<leader>rj", function()
   vim.cmd.RustLsp { "moveItem", "down" }
 end, desc "Rust move item down [j]")
--- vim.keymap.set("n", "<leader>ca", function()
---   vim.cmd.RustLsp "codeAction"
--- end, desc "Rust [c]ode [a]ctions")
+vim.keymap.set("n", "<leader>ca", function()
+  vim.cmd.RustLsp "codeAction"
+end, desc "Rust [c]ode [a]ctions")
