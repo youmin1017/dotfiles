@@ -8,10 +8,14 @@ local map = vim.keymap.set
 map("n", "<leader>f", "<nop>")
 map("n", "<leader>e", "<nop>")
 map("n", "<C-s>", "<nop>")
+map("n", "<C-n>", "<nop>")
 
 -- custom mappings
 map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
+
+-- nvim-tree
+map("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "NvimTree Toggle" })
 
 -- Allow moving the cursor through wrapped lines with j, k, <Up> and <Down>
 -- http://www.reddit.com/r/vim/comments/2k4cbr/problem_with_gj_and_gk/

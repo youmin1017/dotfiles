@@ -55,6 +55,7 @@ return {
   { import = "configs.mason-lspconfig" },
   { import = "configs.rust" },
   { import = "configs.copilot" },
+  { import = "configs.dressing" },
 
   -- overrde plugin configs
   -- These are some examples, uncomment them if you want to see them work!

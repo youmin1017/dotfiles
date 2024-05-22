@@ -64,11 +64,9 @@ local setup = function(_, opts)
     end,
 
     ["rust_analyzer"] = function()
+      -- vim.g.rustaceanvim.tools.code_actions.ui_select_fallback
       ---@type RustaceanOpts
       vim.g.rustaceanvim = {
-        -- tools = {
-        --   executor = "toggleterm",
-        -- },
         server = {
           on_attach = function(client, bufnr)
             on_attach(client, bufnr)
