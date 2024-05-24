@@ -9,10 +9,14 @@ map("n", "<leader>f", "<nop>")
 map("n", "<leader>e", "<nop>")
 map("n", "<C-s>", "<nop>")
 map("n", "<C-n>", "<nop>")
+map("i", "<C-b>", "<nop>")
 
 -- custom mappings
 map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
+map("i", "<C-a>", "<ESC>^i", { desc = "move beginning of line" })
+map("i", "<C-e>", "<End>", { desc = "move end of line" })
+
 
 -- nvim-tree
 map("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "NvimTree Toggle" })
