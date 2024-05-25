@@ -56,6 +56,7 @@ return {
   { import = "configs.rust" },
   { import = "configs.copilot" },
   { import = "configs.dressing" },
+  { import = "configs.fold.ufo" }
 
   -- overrde plugin configs
   -- These are some examples, uncomment them if you want to see them work!

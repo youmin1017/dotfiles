@@ -5,7 +5,7 @@ require "nvchad.options"
 vim.o.cursorlineopt = "both" -- to enable cursorline!
 
 vim.opt.formatoptions:append "mM"
-vim.opt.clipboard = nil
+vim.o.clipboard = nil
 vim.opt.scrolloff = 5
 
 vim.wo.wrap = false
