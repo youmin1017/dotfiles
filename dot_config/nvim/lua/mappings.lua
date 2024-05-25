@@ -16,7 +16,7 @@ map("n", ";", ":", { desc = "CMD enter command mode" })
 map("i", "jk", "<ESC>")
 map("i", "<C-a>", "<ESC>^i", { desc = "move beginning of line" })
 map("i", "<C-e>", "<End>", { desc = "move end of line" })
-
+map("i", "<C-d>", "<Del>", { desc = "delete character" })
 
 -- nvim-tree
 map("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { desc = "NvimTree Toggle" })
