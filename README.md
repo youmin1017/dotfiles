@@ -6,7 +6,7 @@ These configs are managed by chezmoi
 
 1. Clone this repo
   ```sh
-  git clone https://github.com/youmin1017/dot-configs.git ~/.local/share/chezmoi
+  git clone git@github.com/youmin1017/dotfiles.git ~/.local/share/chezmoi
   ```
 2. Install chezmoi(in arch)
   ```sh
