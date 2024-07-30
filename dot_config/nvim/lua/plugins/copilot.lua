@@ -1,7 +1,7 @@
----@type NvPluginSpec
-local spec = {
+return {
   {
     "zbirenbaum/copilot.lua",
+    build = ":Copilot auth",
     event = { "InsertEnter" },
     cmd = { "Copilot" },
     opts = {
@@ -11,9 +11,7 @@ local spec = {
           accept_word = false,
           accept_line = "<M-S-l>",
         },
-      }
-    }
+      },
+    },
   },
 }
-
-return spec
