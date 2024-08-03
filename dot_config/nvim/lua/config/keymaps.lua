@@ -17,6 +17,13 @@ map("n", ";", ":", { desc = "CMD enter command mode" })
 --     ╰───────────────────────────────────────────────────────────────────╯
 map("n", "<leader>/", "gcc", { desc = "comment toggle", remap = true })
 map("v", "<leader>/", "gc", { desc = "comment toggle", remap = true })
+map("n", ">", ">>", { nowait = true, desc = "Editor Indent forward easily" })
+map("n", "<", "<<", { nowait = true, desc = "Editor Indent backword easily" })
+map("x", ">", ">gv", { nowait = true, desc = "Editor Indent forward easily" })
+map("x", "<", "<gv", { nowait = true, desc = "Editor Indent backword easily" })
+map("i", "<C-a>", "<ESC>^i", { desc = "move beginning of line" })
+map("i", "<C-e>", "<End>", { desc = "move end of line" })
+map("i", "<C-d>", "<Del>", { desc = "delete character" })
 
 --     ╭───────────────────────────────────────────────────────────────────╮
 --     │                  Clipboard: Normal/Visual mode                    │
