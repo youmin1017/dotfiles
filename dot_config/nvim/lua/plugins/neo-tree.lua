@@ -8,6 +8,8 @@ return {
           mappings = {
             ["H"] = "none",
             ["z"] = "none",
+            ["<BS>"] = "none",
+            ["-"] = "navigate_up",
             ["I"] = "toggle_hidden",
             ["<C-w>"] = "close_all_nodes",
           },
