@@ -2,10 +2,19 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 local map = vim.keymap.set
+local nomap = vim.keymap.del
 
-map("n", "<leader>ft", "<nop>")
-map("n", "<leader>fT", "<nop>")
-map("t", "<C-/>", "<nop>")
+--     ╭───────────────────────────────────────────────────────────────────╮
+--     │                  Disable Mappings                                 │
+--     ╰───────────────────────────────────────────────────────────────────╯
+nomap("n", "<leader>ft")
+nomap("n", "<leader>fT")
+nomap("t", "<C-/>")
+nomap("t", "<esc><esc>")
+nomap("t", "<C-h>")
+-- nomap("t", "<C-j>")
+-- nomap("t", "<C-k>")
+nomap("t", "<C-l>")
 
 --     ╭───────────────────────────────────────────────────────────────────╮
 --     │                  Convenience Mappings                             │
@@ -49,8 +58,9 @@ map({ "n", "x" }, "gh", "g0", { desc = "Editor Go to begging" })
 map({ "n", "x" }, "gl", "g$", { desc = "Editor Go to end of line" })
 
 --     ╭───────────────────────────────────────────────────────────────────╮
---     │                  Lazyterm                                         │
+--     │                   Terminal                                        │
 --     ╰───────────────────────────────────────────────────────────────────╯
+map("t", "<C-x>", "<c-\\><c-n>", { desc = "Enter Normal Mode" })
 local lazyterm = function()
   LazyVim.terminal(nil, { cwd = LazyVim.root(), count = 3 })
 end
@@ -61,7 +71,7 @@ map("n", "<M-i>", function()
     { cwd = LazyVim.root(), border = "single", size = {
       width = 0.8,
       height = 0.7,
-    } }
+    }, count = 3 }
   )
 end, { desc = "Terminal float (Root Dir)" })
 map("n", "<M-S-i>", function()
