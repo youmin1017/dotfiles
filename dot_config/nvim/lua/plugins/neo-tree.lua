@@ -15,6 +15,13 @@ return {
           },
         },
       },
+      document_symbols = {
+        window = {
+          mappings = {
+            ["l"] = "toggle_node",
+          },
+        },
+      },
     },
   },
 }
