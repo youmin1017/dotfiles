@@ -61,7 +61,6 @@ setopt autocd
 autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
-
 # Antidote
 # initialize plugins statically with ${ZDOTDIR:-~}/.zsh_plugins.txt
 [ -f /usr/share/zsh-antidote/antidote.zsh ] && source '/usr/share/zsh-antidote/antidote.zsh'
@@ -73,7 +72,6 @@ SAVEHIST=10000
 setopt inc_append_history
 
 eval "$(zoxide init --cmd z zsh)"
-eval "$(fzf --zsh)"
 
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
