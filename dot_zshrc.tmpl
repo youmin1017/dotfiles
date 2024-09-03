@@ -1,6 +1,6 @@
 {{- if eq .chezmoi.os "darwin" -}}
 {{-   include ".zshrc_darwin" -}}
-{{ if (or (eq .chezmoi.osRelease.name "Arch Linux ARM") (eq .chezmoi.osRelease.name "Arch Linux")) -}}
+{{- else if (or (eq .chezmoi.osRelease.name "Arch Linux ARM") (eq .chezmoi.osRelease.name "Arch Linux")) -}}
 {{-   include ".zshrc_arch" -}}
 {{- else if eq .chezmoi.os "linux" -}}
 {{-   include ".zshrc_linux" -}}
