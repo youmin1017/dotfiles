@@ -3,7 +3,9 @@
 sudo pacman -S --noconfirm --needed \
     {{- range .packages.arch.pacman -}}
     {{ . }} \
-    {{- end -}}
+    {{- end }}
+
+# Install yay
 git clone https://aur.archlinux.org/yay.git /tmp/yay
 cd /tmp/yay
 makepkg -si
@@ -11,5 +13,7 @@ yay --noconfirm --answerdiff=None \
     {{- range .packages.arch.aur -}}
     {{ . }} \
     {{- end -}}
+
+chsh -s /bin/zsh
 {{ end -}}
 
