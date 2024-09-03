@@ -1,0 +1,9 @@
+packages:
+  arch:
+    pacman:
+      - neovim
+      - fzf
+      - zoxide
+      - zsh
+      - starship
+      - zsh-antidote
