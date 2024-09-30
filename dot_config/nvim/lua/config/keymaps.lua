@@ -33,6 +33,9 @@ map("x", "<", "<gv", { nowait = true, desc = "Editor Indent backword easily" })
 map("i", "<C-a>", "<ESC>^i", { desc = "move beginning of line" })
 map("i", "<C-e>", "<End>", { desc = "move end of line" })
 map("i", "<C-d>", "<Del>", { desc = "delete character" })
+map({ "n", "v" }, "<leader>fm", function()
+  LazyVim.format({ force = true })
+end, { desc = "Format" })
 
 --     ╭───────────────────────────────────────────────────────────────────╮
 --     │                  Clipboard: Normal/Visual mode                    │
