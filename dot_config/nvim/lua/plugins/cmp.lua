@@ -1,10 +1,10 @@
+---@type NvPluginSpec
 return {
-  {
-    "hrsh7th/nvim-cmp",
-    opts = {
-      mapping = {
-        ["<C-s>"] = require("cmp").mapping.complete(),
-      },
-    },
-  },
+  "hrsh7th/nvim-cmp",
+  opts = {
+    mapping = {
+      ["<C-s>"] = require("cmp").mapping.complete(),
+      ["<C-Space>"] = {},
+    }
+  }
 }
