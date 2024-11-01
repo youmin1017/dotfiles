@@ -1,0 +1,11 @@
+packages:
+  arch:
+    pacman:
+      - base-devel
+      - neovim
+      - fzf
+      - zoxide
+      - zsh
+      - starship
+    aur:
+      - zsh-antidote
