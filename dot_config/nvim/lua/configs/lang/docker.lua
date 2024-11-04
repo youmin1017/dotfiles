@@ -23,7 +23,7 @@ return {
     "williamboman/mason.nvim",
     opts = {
       ensure_installed = {
-        "hadolint",
+        -- "hadolint",
         "dockerfile-language-server",
         "docker-compose-language-service",
       },
@@ -42,14 +42,5 @@ return {
       opts.__setup_functions = opts.__setup_functions or {}
       table.insert(opts.__setup_functions, setup)
     end,
-  },
-  {
-    "mfussenegger/nvim-lint",
-    optional = true,
-    opts = {
-      linters_by_ft = {
-        dockerfile = { "hadolint" },
-      },
-    },
   },
 }
