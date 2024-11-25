@@ -8,6 +8,12 @@ local del = vim.keymap.del
 del("n", "<C-n>")
 
 --     ╭───────────────────────────────────────────────────────────────────╮
+--     │                  Nix Justfile                                     │
+--     ╰───────────────────────────────────────────────────────────────────╯
+map("n", "<f1>", "<cmd>! just hm<CR>", { desc = "Nix just home-manager" })
+map("n", "<f2>", "<cmd>! just darwin<CR>", { desc = "Nix just darwin" })
+
+--     ╭───────────────────────────────────────────────────────────────────╮
 --     │                  Override NvChad Mappings                         │
 --     ╰───────────────────────────────────────────────────────────────────╯
 -- map("n", "<leader>e", "<cmd>NvimTreeToggle<CR>", { remap = true })
@@ -62,15 +68,17 @@ map("n", "]d", vim.diagnostic.goto_next, { desc = "Next diagnostic" })
 --     ╭───────────────────────────────────────────────────────────────────╮
 --     │                  Tabufline                                        │
 --     ╰───────────────────────────────────────────────────────────────────╯
-map("n", "<tab>", "<cmd>tabnext<CR>", { desc = "buffer goto next tab" })
-map("n", "<S-tab>", "<cmd>tabprevious<CR>", { desc = "buffer goto next tab" })
+-- map("n", "<tab>", "<cmd>tabnext<CR>", { desc = "buffer goto next tab" })
+-- map("n", "<S-tab>", "<cmd>tabprevious<CR>", { desc = "buffer goto next tab" })
 
-map("n", "<leader>bo", function()
-  require("nvchad.tabufline").closeAllBufs(false)
-end, { desc = "buffer Close other buffer" })
 map("n", "<leader>bO", function()
   require("nvchad.tabufline").closeAllBufs(true)
+end, { desc = "buffer Close other buffer" })
+
+map("n", "<leader>bo", function()
+  require("nvchad.tabufline").closeAllBufs()
 end, { desc = "buffer Close all buffer" })
+
 map("n", "<S-l>", function()
   require("nvchad.tabufline").next()
 end, { desc = "buffer goto next" })
@@ -78,3 +86,10 @@ end, { desc = "buffer goto next" })
 map("n", "<S-h>", function()
   require("nvchad.tabufline").prev()
 end, { desc = "buffer goto prev" })
+
+--     ╭───────────────────────────────────────────────────────────────────╮
+--     │                   Terminal                                        │
+--     ╰───────────────────────────────────────────────────────────────────╯
+map({ "n", "t" }, "<A-1>", function()
+  require("nvchad.term").toggle { cmd = "k9s", pos = "float", id = "k9sTerm" }
+end, { desc = "terminal toggle floating k9s term" })

@@ -1,9 +1,13 @@
--- local utils = require "utils"
-
 local function setup()
   local lsp = require "configs.lspconfig"
 
-  require("lspconfig").nil_ls.setup {
+  require("lspconfig").jsonls.setup {
+    settings = {
+      json = {
+        schemas = require("schemastore").json.schemas(),
+        validate = { enable = true },
+      },
+    },
     on_attach = function(client, bufnr)
       lsp.on_attach(client, bufnr)
     end,
@@ -15,32 +19,24 @@ end
 --- @type NvPluginSpec
 return {
   {
-    "stevearc/conform.nvim",
-    opts = {
-      formatters_by_ft = {
-        nix = { "nixfmt" },
-      },
-    },
+    "b0o/SchemaStore.nvim",
+    lazy = true,
+    version = false, -- last release is way too old
   },
-  {
-    "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts)
-      opts.ensure_installed = opts.ensure_installed or {}
-      vim.list_extend(opts.ensure_installed, { "nix" })
-    end,
-  },
+
   {
     "williamboman/mason-lspconfig",
     opts = function(_, opts)
       opts.ensure_installed = opts.ensure_installed or {}
-      vim.list_extend(opts.ensure_installed, { "nil_ls" })
+      vim.list_extend(opts.ensure_installed, { "jsonls" })
     end,
   },
+
   {
     "williamboman/mason-lspconfig",
     opts = {
       handlers = {
-        ["nil_ls"] = setup,
+        ["jsonls"] = setup,
       },
     },
   },

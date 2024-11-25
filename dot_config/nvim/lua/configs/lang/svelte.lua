@@ -19,30 +19,38 @@ end
 
 --- @type NvPluginSpec
 return {
-  {
-    "conform.nvim",
-    opts = function(_, opts)
-      opts.formatters_by_ft = opts.formatters_by_ft or {}
-      opts.formatters_by_ft.svelte = { "prettier" }
-    end,
-  },
-  {
-    "williamboman/mason.nvim",
-    opts = { ensure_installed = { "prettier" } },
-  },
+  -- {
+  --   "conform.nvim",
+  --   opts = {
+  --     formatters_by_ft = {
+  --       ["svelte"] = { "prettier" },
+  --     },
+  --   },
+  -- },
+  -- {
+  --   "williamboman/mason.nvim",
+  --   opts = { ensure_installed = { "prettier" } },
+  -- },
   {
     "nvim-treesitter/nvim-treesitter",
     opts = function(_, opts)
       opts.ensure_installed = opts.ensure_installed or {}
-
-      table.insert(opts.ensure_installed, { "svelte", "typescript", "javascript" })
+      vim.list_extend(opts.ensure_installed, { "svelte", "typescript", "javascript" })
     end,
   },
   {
-    "neovim/nvim-lspconfig",
+    "williamboman/mason-lspconfig",
     opts = function(_, opts)
-      opts.__setup_functions = opts.__setup_functions or {}
-      table.insert(opts.__setup_functions, setup)
+      opts.ensure_installed = opts.ensure_installed or {}
+      vim.list_extend(opts.ensure_installed, { "svelte" })
     end,
+  },
+  {
+    "williamboman/mason-lspconfig",
+    opts = {
+      handlers = {
+        ["svelte"] = setup,
+      },
+    },
   },
 }
