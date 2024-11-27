@@ -23,37 +23,28 @@ function gitcfg() {
   esac
 }
 
-# pnpm
-export PNPM_HOME="$HOME/Library/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
-
 # Alias
-
 # ls
 if [ -x "$(command -v eza)" ]; then
-  alias --  l='eza -lh  --icons=auto --sort=name --group-directories-first' # long list
-  alias -- ls='eza -1   --icons=auto --sort=name --group-directories-first' # short list
-  alias -- ll='eza -lha --icons=auto --sort=name --group-directories-first' # long list all
-  alias -- ld='eza -lhD --icons=auto' # long list dirs
-  alias -- lt='eza --icons=auto --tree' # list folder as tree
+  alias -- ls="eza"
+  alias -- ll="eza -l"
+  alias -- la="eza -a"
+  alias -- lt="eza --tree"
+  alias -- lla="eza -la"
 else
   alias -- ls='ls --color=auto'
 fi
 
-alias -- ii='open -a Finder.app'
 alias -- vim='nvim'
-alias -- rm='trash -F'
 alias -- lg='lazygit'
-alias -- kc='kubectl'
+alias -- k='kubectl'
 alias -- uc='utmctl'
 alias -- cz='chezmoi'
 
-PATH="$PATH:$HOME/.bun/bin"
-PATH="$PATH:$HOME/.cargo/bin"
+# PATH="$PATH:$HOME/.bun/bin"
+# PATH="$PATH:$HOME/.cargo/bin"
+PATH="$PATH:$HOME/.local/bin"
+PATH="/var/lib/rancher/rke2/bin/:$PATH"
 
 export EDITOR='nvim'
 
@@ -63,7 +54,7 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
 # Antidote
 # initialize plugins statically with ${ZDOTDIR:-~}/.zsh_plugins.txt
-[ -f /usr/share/zsh-antidote/antidote.zsh ] && source '/usr/share/zsh-antidote/antidote.zsh'
+[ -f $HOME/.antidote/antidote.zsh ] && source "$HOME/.antidote/antidote.zsh"
 antidote load
 
 HISTFILE=~/.zsh_history
@@ -73,13 +64,9 @@ setopt inc_append_history
 
 eval "$(zoxide init --cmd z zsh)"
 
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-
-eval "$(fnm env --use-on-cd)"
+# eval "$(fnm env --use-on-cd)"
 eval "$(starship init zsh)"
 
-source <(sqlx completions zsh)
-# source <(kubectl completion zsh)
+# source <(sqlx completions zsh)
 # source <(glab completion -s zsh); compdef _glab glab
+[ -x "$(command -v kubectl)" ] && source <(kubectl completion zsh)
